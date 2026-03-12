@@ -1,0 +1,150 @@
+Description
+
+
+Note :
+EFCore.csproj file is given for your reference in the code template. Do not make any changes here.
+
+Objective: This exercise aims to introduce learners to developing a C# application utilizing Entity Framework Core to store car details in a SQL Server database.
+
+
+
+Scenario:
+
+Sam, a skilled software developer, recently joined a prestigious car company. As part of his responsibilities, he has been assigned the task of creating an advanced application for adding car details to the company's database.
+
+Help them to create a C# application to store details in the SQLSERVER database and use the entity framework core to connect to the database, which provides the following functionalities.
+
+ 
+
+Functionalities:
+
+Add car details to the database.
+ 
+
+Requirements: 
+
+1. In the class Car, implement the below given public properties.
+
+        Data Type
+
+          Property Name
+
+   int 
+
+   Id
+
+   string 
+
+   Brand
+
+   string 
+
+   Model
+
+   double
+
+   Price
+
+
+Add the below data annotation attributes : 
+Key attribute - which is used to make the Id property a primary key in the Car class.
+DatabaseGeneratedOption.None attribute -  which is used to make the Id property a non-identity primary key in the Car class.
+
+
+
+2. In the class Car Context, implement the below given property, method and also inherit the class DbContext.
+
+              Data Type
+
+             Property Name
+
+  DbSet<Car>
+
+  Cars
+
+
+
+             Method
+
+               Description
+
+protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+
+This method is used to configure the database connection for the DbContext.
+
+
+
+appsettings.json: 
+
+{
+
+  "ConnectionStrings": {
+
+    "DefaultConnection": "Data Source=(LocalDB)\\MSSQLLocalDB;Initial Catalog=StudentDB;Integrated Security=True;"
+
+  }
+
+}
+
+This file is already provided for you. Use the connection string in your context class OnConfiguring method to configure the database.
+
+ 
+
+The below-given reference code is the part of the CarContext.cs
+
+
+
+
+
+3. In the class CarRepository, implement the below given public method.
+
+         Method 
+
+      Description
+
+public bool AddCar(Car car)
+
+This method is used to add the given car details to the database. 
+
+If the car details are added successfully, then return true.
+
+
+
+
+4. In the class Program - Main() method,
+
+--  Get the all input values from the user.
+
+--  Call the AddCar method and print Details Added Successfully.
+
+
+
+Note:
+
+Keep the properties, methods and classes as public.
+Please read the method rules clearly.
+Do not use Environment.Exit() to terminate the program.
+Do not change the given code template.  
+      
+
+Sample Input/output:
+
+Enter car id
+
+1
+
+Enter car brand
+
+Hyundai
+
+Enter car model
+
+Hyundai Elantra
+
+Enter car price
+
+1800000
+
+
+
+Details Added Successfully
