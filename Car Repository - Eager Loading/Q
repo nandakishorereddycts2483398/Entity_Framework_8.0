@@ -1,0 +1,251 @@
+Description
+
+
+Note :
+EFCore.csproj file is given for your reference in the code template. Do not make any changes here.
+
+Objective: This exercise aims to introduce learners to the concept of eager loading in Entity Framework Core and demonstrate its usage to optimize data retrieval by efficiently loading related data along with the main entities in a single query.
+
+
+
+Scenario:
+
+Sam has been assigned the new task of creating an advanced application for retrieving car and make details from the company's database.
+
+Help them create a C# application to retrieve details from the SQLSERVER database and use the entity framework core to connect to the database, which provides the following functionalities.
+
+ 
+
+Functionalities:
+
+Retrieving car and make details from the database using Eager Loading.
+ 
+
+Requirements: 
+
+1. In the class Car, implement the below given public properties.
+
+        Data Type
+
+          Property Name
+
+   int 
+
+   Id
+
+   string 
+
+  Model
+
+   int
+
+  Year
+
+   int 
+
+  MakeId
+
+   Make
+
+  Make
+
+
+Add the below data annotation attributes : 
+Key attribute - which is used to make the Id property a primary key in the Car class.
+DatabaseGeneratedOption.None attribute -  which is used to make the Id property a non-identity primary key in the Car class.
+
+
+2. In the class Make, implement the below given public properties.
+
+
+        Data Type
+
+          Property Name
+
+   int 
+
+   Id
+
+   string 
+
+   Name
+
+
+Add the below data annotation attributes : 
+
+Key attribute - which is used to make the Id property a primary key in the Make  class.
+DatabaseGeneratedOption. None attribute -  which is used to make the Id property a non-identity primary key in the Make  class.
+
+3. In the class Car Context, implement the below given property, method and also inherit the class DbContext.
+
+              Data Type
+
+             Property Name
+
+  DbSet<Car>
+
+  Cars
+
+  DbSet<Make>
+
+  Makes
+
+
+
+             Method
+
+               Description
+
+protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+
+This method is used to configure the database connection for the DbContext.
+
+
+
+appsettings.json: 
+
+{
+
+  "ConnectionStrings": {
+
+    "DefaultConnection": "Data Source=(LocalDB)\\MSSQLLocalDB;Initial Catalog=StudentDB;Integrated Security=True;"
+
+  }
+
+}
+
+This file is already provided for you. Use the connection string in your context class OnConfiguring method to configure the database.
+
+ 
+
+The below-given reference code is the part of the CarContext.cs
+
+
+
+
+
+4. In the class CarRepository, implement the below given public method.
+
+         Method 
+
+      Description
+
+public static IEnumerable<Car> GetAllCarsWithMake(CarContext context)
+
+This method is used to get the cars with make details from the database.
+
+Hint: Use Include method (Eager Loading Concept).
+
+
+
+
+4. In the class Program - Main() method,
+
+--  Call the GetAllCarsWithMake method and display the result as per the sample output.
+
+
+
+5. The "GetMyExpression" method is for testing your LINQ QUERY EXPRESSION. So fill your query expression in the space holder provided. ONLY THE QUERY EXPRESSION Nothing more needs to be implemented in this method.
+
+
+
+The below sample data is already available in the database table Makes.
+
+Id
+
+Name
+
+101
+
+Toyota
+
+102
+
+Ford
+
+103
+
+Honda
+
+104
+
+BMW
+
+
+
+The below sample data is already available in the database table Cars.
+
+
+Id
+
+Model
+
+Year
+
+MakeId
+
+1
+
+Camry
+
+1999
+
+101
+
+2
+
+Mustang
+
+2002
+
+102
+
+3
+
+Sienna
+
+2000
+
+101
+
+4
+
+Civic
+
+1998
+
+103
+
+5
+
+X3
+
+2002
+
+104
+
+
+
+
+Note:
+
+Keep the properties, methods and classes as public.
+Please read the method rules clearly.
+Do not use Environment.Exit() to terminate the program.
+Do not change the given code template.   
+
+
+
+
+Sample Output :
+
+Car Id: 1,       Make: Toyota,       Model: Camry,        Year: 1999
+
+Car Id: 2,       Make: Ford,           Model: Mustang,    Year: 2002
+
+Car Id: 3,       Make: Toyota,       Model: Sienna,        Year: 2000
+
+Car Id: 4,       Make: Honda,       Model: Civic,           Year: 1998
+
+Car Id: 5,       Make: BMW,         Model: X3,                Year: 2002
+
